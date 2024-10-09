@@ -9,7 +9,15 @@ const LoginRoute: AppRouteObject = {
 }
 
 export default function Router() {
-  const routes = [LoginRoute];
+
+
+  const asyncRoutes: AppRouteObject = {
+    path: '/',
+    element: <div>this is dashboard page</div>,
+  }
+
+
+  const routes = [LoginRoute, asyncRoutes];
   const router = createHashRouter(routes as unknown as RouteObject[]);
   return <RouterProvider router={router} />;
 }

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": ["ES2023"],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"], // 要包含的库文件。DOM、DOM.Iterable 和 ESNext 库文件是 TypeScript 开发中比较基础的依赖。
     "module": "ESNext",
     "skipLibCheck": true,
 
