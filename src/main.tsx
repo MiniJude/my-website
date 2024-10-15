@@ -1,9 +1,16 @@
 // react-query
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-
+// react
+import { Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
+
+// react helmet
+import { HelmetProvider } from "react-helmet-async";
+// eslint-disable-next-line import/no-unresolved
+import 'virtual:svg-icons-register';
+
+import App from "@/App";
 
 // i18n
 import "./locales/i18n.ts";
@@ -27,8 +34,12 @@ const queryClient = new QueryClient({
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
 root.render(
-  <QueryClientProvider client={queryClient}>
-    <ReactQueryDevtools initialIsOpen={false} />
-    <App />
-  </QueryClientProvider>
+  <HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <Suspense>
+        <App />
+      </Suspense>
+    </QueryClientProvider>
+  </HelmetProvider>
 );

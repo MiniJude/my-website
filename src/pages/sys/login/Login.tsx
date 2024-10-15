@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import DashboardImg from "@/assets/images/background/dashboard.png";
 import Overlay2 from "@/assets/images/background/overlay_2.jpg";
 import { useThemeToken } from "@/theme/hooks";
+import LocalePicker from "@/components/locale-picker";
 
 import { LoginStateProvider } from "./providers/LoginStateProvider";
 import LoginForm from './LoginForm'
@@ -32,6 +33,10 @@ function Login() {
         <LoginStateProvider>
           <LoginForm></LoginForm>
         </LoginStateProvider>
+      </div>
+
+      <div className="absolute right-2 top-0">
+        <LocalePicker />
       </div>
     </Layout>
   );
