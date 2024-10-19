@@ -9,6 +9,10 @@ import LocalePicker from "@/components/locale-picker";
 
 import { LoginStateProvider } from "./providers/LoginStateProvider";
 import LoginForm from './LoginForm'
+import MobileForm from './MobileForm';
+import QrCodeFrom from './QrCodeForm';
+import RegisterForm from './RegisterForm';
+import ResetForm from "./ResetForm";
 
 function Login() {
   const { t } = useTranslation();
@@ -31,7 +35,11 @@ function Login() {
       </div>
       <div className="m-auto flex !h-screen w-full max-w-[480px] flex-col justify-center px-[16px] lg:px-[64px]">
         <LoginStateProvider>
-          <LoginForm></LoginForm>
+          <LoginForm />
+          <MobileForm />
+          <QrCodeFrom />
+          <RegisterForm />
+          <ResetForm />
         </LoginStateProvider>
       </div>
 
