@@ -12,6 +12,7 @@ import 'virtual:svg-icons-register';
 
 import App from "@/App";
 
+import worker from './_mock';
 // i18n
 import "./locales/i18n.ts";
 // tailwind css
@@ -43,3 +44,6 @@ root.render(
     </QueryClientProvider>
   </HelmetProvider>
 );
+
+// 🥵 start service worker mock in development mode
+worker.start({ onUnhandledRequest: 'bypass' });

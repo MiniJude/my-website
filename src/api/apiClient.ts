@@ -7,7 +7,7 @@ import { ResultEnum } from "#/enum";
 import userStore from "@/store/userStore";
 
 const axiosInstance = axios.create({
-  baseURL: "https://api.themoviedb.org/3",
+  baseURL: import.meta.env.VITE_APP_BASE_API,
   timeout: 50000,
   headers: {
     "Content-Type": "application/json",
