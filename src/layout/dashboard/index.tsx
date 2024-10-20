@@ -8,6 +8,8 @@ import { useSettings } from "@/store/settingStore";
 import { useThemeToken } from "@/theme/hooks";
 
 import Header from './header';
+import Nav from './nav';
+import NavHorizontal from './nav-horizontal';
 
 import { ThemeLayout, ThemeMode } from "#/enum";
 
@@ -35,6 +37,14 @@ function DashboardLayout() {
     onOffSetTop();
   }, [onOffSetTop]);
 
+  const navVertical = (
+    <div className="z-50 hidden h-full flex-shrink-0 md:block">
+      <Nav />
+    </div>
+  );
+
+  const nav = themeLayout === ThemeLayout.Horizontal ? <NavHorizontal /> : navVertical;
+
   return (
     <StyleWrapper $themeMode={themeMode}>
       <ProgressBar />
@@ -51,6 +61,7 @@ function DashboardLayout() {
       >
         <Suspense fallback={<CircleLoading />}>
           <Header offsetTop={themeLayout === ThemeLayout.Vertical ? offsetTop : undefined} />
+          {nav}
         </Suspense>
       </div>
     </StyleWrapper>
