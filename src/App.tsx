@@ -1,7 +1,7 @@
 import { App as AntdApp } from "antd";
 import { Helmet } from "react-helmet-async";
 
-import Logo from "@/assets/images/logo.png";
+import Logo from "@/assets/images/logo.jpg";
 import Router from "@/router";
 import AntdConfig from "@/theme/antd";
 
@@ -10,7 +10,7 @@ function App() {
     <AntdConfig>
       <AntdApp>
         <Helmet>
-          <title>Slash Admin</title>
+          <title>Blog Admin</title>
           <link rel="icon" href={Logo} />
         </Helmet>
         <Router />
