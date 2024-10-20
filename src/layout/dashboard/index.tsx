@@ -1,16 +1,58 @@
+import { useScroll } from "framer-motion";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
+import { CircleLoading } from "@/components/loading";
 import ProgressBar from "@/components/progress-bar";
 import { useSettings } from "@/store/settingStore";
+import { useThemeToken } from "@/theme/hooks";
+
+import Header from './header';
 
 import { ThemeLayout, ThemeMode } from "#/enum";
 
 function DashboardLayout() {
+  const { colorBgElevated, colorTextBase } = useThemeToken();
   const { themeLayout, themeMode } = useSettings();
+
+  const mainEl = useRef(null);
+  const { scrollY } = useScroll({ container: mainEl });
+  /**
+   * y轴是否滚动
+   */
+  const [offsetTop, setOffsetTop] = useState(false);
+  const onOffSetTop = useCallback(() => {
+    scrollY.on("change", (scrollHeight) => {
+      if (scrollHeight > 0) {
+        setOffsetTop(true);
+      } else {
+        setOffsetTop(false);
+      }
+    });
+  }, [scrollY]);
+
+  useEffect(() => {
+    onOffSetTop();
+  }, [onOffSetTop]);
 
   return (
     <StyleWrapper $themeMode={themeMode}>
       <ProgressBar />
+      <div
+        className={`flex h-screen overflow-hidden ${
+          themeLayout === ThemeLayout.Horizontal ? "flex-col" : ""
+        }`}
+        style={{
+          color: colorTextBase,
+          background: colorBgElevated,
+          transition:
+            "color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+        }}
+      >
+        <Suspense fallback={<CircleLoading />}>
+          <Header offsetTop={themeLayout === ThemeLayout.Vertical ? offsetTop : undefined} />
+        </Suspense>
+      </div>
     </StyleWrapper>
   );
 }
