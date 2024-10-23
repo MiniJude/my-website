@@ -8,6 +8,7 @@ import { useSettings } from "@/store/settingStore";
 import { useThemeToken } from "@/theme/hooks";
 
 import Header from './header';
+import Main from './main';
 import Nav from './nav';
 import NavHorizontal from './nav-horizontal';
 
@@ -62,6 +63,7 @@ function DashboardLayout() {
         <Suspense fallback={<CircleLoading />}>
           <Header offsetTop={themeLayout === ThemeLayout.Vertical ? offsetTop : undefined} />
           {nav}
+          <Main ref={mainEl} offsetTop={offsetTop} />
         </Suspense>
       </div>
     </StyleWrapper>
